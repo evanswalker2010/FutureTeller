@@ -393,6 +393,16 @@
   }
 }
 
+html[data-shell="phone-app"] .phone-shell {
+  display: flex !important;
+  height: 100dvh;
+  flex-direction: column;
+}
+
+html[data-shell="phone-app"] .desktop-shell {
+  display: none !important;
+}
+
 html[data-shell="mac-app"] .mac-chrome {
   padding-left: 5.75rem;
   -webkit-app-region: drag;

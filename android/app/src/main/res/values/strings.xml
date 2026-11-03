@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">易经算卦</string>
+    <string name="title_activity_main">易经算卦</string>
+    <string name="package_name">app.yijing.divination</string>
+    <string name="custom_url_scheme">app.yijing.divination</string>
+</resources>

@@ -91,6 +91,7 @@ async function stageApp() {
       2,
     ),
   );
+  await rm(path.join(root, ".next-desktop", "download"), { recursive: true, force: true });
   await cp(path.join(root, "desktop", "main.cjs"), path.join(stageDir, "main.cjs"));
   await cp(path.join(root, "desktop", "preload.cjs"), path.join(stageDir, "preload.cjs"));
   await cp(path.join(root, ".next-desktop"), path.join(stageDir, "out"), { recursive: true });

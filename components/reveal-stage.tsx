@@ -48,13 +48,12 @@ export function RevealStage({
         </div>
       </div>
 
-      <p className="mt-6 min-h-8 text-center font-serif tracking-[0.28em] text-paper" aria-live="polite">
-        {phase === "idle" ? hint : null}
-        {phase === "spinning" ? "八卦运转" : null}
-        {phase === "shrinking" ? "收为一点" : null}
-        {phase === "growing" ? "卦象生成" : null}
-        {phase === "reading" && hex ? `${hex.name} · ${imageTitle(hex)}` : null}
-      </p>
+      {phase === "idle" || (phase === "reading" && hex) ? (
+        <p className="mt-6 min-h-8 text-center font-serif tracking-[0.28em] text-paper" aria-live="polite">
+          {phase === "idle" ? hint : null}
+          {phase === "reading" && hex ? `${hex.name} · ${imageTitle(hex)}` : null}
+        </p>
+      ) : null}
       {phase === "reading" && hex ? (
         <p className="mt-2 text-sm tracking-[0.2em] text-gold-soft">
           {ordinal(hex.number)} · {placement(hex)}

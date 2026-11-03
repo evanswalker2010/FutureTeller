@@ -37,10 +37,10 @@ export function DivinationApp() {
 
   return (
     <>
-      <div className="h-dvh min-[840px]:hidden">
+      <div className="phone-shell h-dvh min-[840px]:hidden">
         <PhoneStage ritual={ritual} platform={uaPlatform} mode="device" />
       </div>
-      <div className="hidden h-dvh min-[840px]:block">
+      <div className="desktop-shell hidden h-dvh min-[840px]:block">
         {choice === "mac" ? (
           <MacStage ritual={ritual} choice={choice} onChoice={setChoice} />
         ) : (

@@ -20,6 +20,8 @@ const eslintConfig = [
       "release/**",
       "desktop/**",
       "scripts/**",
+      "android/**",
+      "ios/**",
       "build/**",
       "next-env.d.ts",
     ],

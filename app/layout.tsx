@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "@fontsource/noto-sans-sc/chinese-simplified-400.css";
 import "@fontsource/noto-sans-sc/chinese-simplified-500.css";
 import "@fontsource/noto-sans-sc/chinese-simplified-700.css";
@@ -38,7 +39,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body className="min-h-dvh antialiased">{children}</body>
+      <body className="min-h-dvh antialiased">
+        <Script id="phone-shell" strategy="beforeInteractive">
+          {`if(/YijingApp/.test(navigator.userAgent))document.documentElement.dataset.shell="phone-app"`}
+        </Script>
+        {children}
+      </body>
     </html>
   );
 }
