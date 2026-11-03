@@ -1,22 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Noto_Sans_SC, Noto_Serif_SC } from "next/font/google";
+import "@fontsource/noto-sans-sc/chinese-simplified-400.css";
+import "@fontsource/noto-sans-sc/chinese-simplified-500.css";
+import "@fontsource/noto-sans-sc/chinese-simplified-700.css";
+import "@fontsource/noto-sans-sc/latin-400.css";
+import "@fontsource/noto-sans-sc/latin-500.css";
+import "@fontsource/noto-sans-sc/latin-700.css";
+import "@fontsource/noto-serif-sc/chinese-simplified-500.css";
+import "@fontsource/noto-serif-sc/chinese-simplified-600.css";
+import "@fontsource/noto-serif-sc/chinese-simplified-700.css";
+import "@fontsource/noto-serif-sc/latin-500.css";
+import "@fontsource/noto-serif-sc/latin-600.css";
+import "@fontsource/noto-serif-sc/latin-700.css";
 import "./globals.css";
-
-const sans = Noto_Sans_SC({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-sans",
-  display: "swap",
-  preload: false,
-});
-
-const serif = Noto_Serif_SC({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-noto-serif",
-  display: "swap",
-  preload: false,
-});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -42,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN" className={`${sans.variable} ${serif.variable}`}>
+    <html lang="zh-CN">
       <body className="min-h-dvh antialiased">{children}</body>
     </html>
   );

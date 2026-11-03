@@ -15,7 +15,12 @@
 
 # next.js
 /.next/
+/.next-desktop/
 /out/
+
+# mac app bundles
+/release/
+/public/download/
 
 # production
 /build

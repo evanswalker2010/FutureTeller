@@ -16,7 +16,7 @@ export function MacStage({
 }) {
   return (
     <div className="flex h-dvh flex-col bg-ink text-paper">
-      <header className="flex shrink-0 items-center justify-between gap-4 border-b border-gold/20 bg-ink-soft px-8 py-4">
+      <header className="mac-chrome flex shrink-0 items-center justify-between gap-4 border-b border-gold/20 bg-ink-soft px-8 py-4">
         <div className="min-w-0">
           <p className="font-serif text-xl tracking-[0.24em] text-paper">易经算卦</p>
           <p className="mt-1 text-xs tracking-[0.32em] text-gold-soft">后天八卦 · 铜钱</p>
