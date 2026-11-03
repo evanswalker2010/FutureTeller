@@ -2,9 +2,12 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { castLine, type Yao } from "@/lib/cast";
-import { lineCaption } from "@/lib/labels";
 
-export type Phase = "idle" | "casting" | "named" | "reading";
+export type Phase = "idle" | "spinning" | "shrinking" | "growing" | "reading";
+
+const SPIN_MS = 1400;
+const SHRINK_MS = 1200;
+const GROW_MS = 1700;
 
 function prefersReducedMotion(): boolean {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -13,7 +16,6 @@ function prefersReducedMotion(): boolean {
 export function useDivination() {
   const [phase, setPhase] = useState<Phase>("idle");
   const [lines, setLines] = useState<Yao[]>([]);
-  const [coins, setCoins] = useState<Yao["coins"] | null>(null);
   const [reduced, setReduced] = useState(false);
   const timers = useRef<number[]>([]);
   const phaseRef = useRef<Phase>("idle");
@@ -43,52 +45,42 @@ export function useDivination() {
     phaseRef.current = "idle";
     setPhase("idle");
     setLines([]);
-    setCoins(null);
   }, [clearTimers]);
 
   const cast = useCallback(() => {
     if (phaseRef.current !== "idle") return;
     const drawn = Array.from({ length: 6 }, () => castLine());
     clearTimers();
-    phaseRef.current = "casting";
 
     if (prefersReducedMotion()) {
       setLines(drawn);
-      setCoins(null);
       phaseRef.current = "reading";
       setPhase("reading");
       return;
     }
 
-    setPhase("casting");
+    phaseRef.current = "spinning";
+    setPhase("spinning");
     setLines([]);
-    setCoins(null);
 
-    const reveal = (index: number) => {
-      setCoins(drawn[index].coins);
-      later(() => {
-        setLines(drawn.slice(0, index + 1));
-        setCoins(null);
-        if (index < 5) {
-          later(() => reveal(index + 1), 240);
-          return;
-        }
-        phaseRef.current = "named";
-        setPhase("named");
-        later(() => {
-          phaseRef.current = "reading";
-          setPhase("reading");
-        }, 720);
-      }, 640);
-    };
+    later(() => {
+      phaseRef.current = "shrinking";
+      setPhase("shrinking");
+    }, SPIN_MS);
 
-    later(() => reveal(0), 280);
+    later(() => {
+      setLines(drawn);
+      phaseRef.current = "growing";
+      setPhase("growing");
+    }, SPIN_MS + SHRINK_MS);
+
+    later(() => {
+      phaseRef.current = "reading";
+      setPhase("reading");
+    }, SPIN_MS + SHRINK_MS + GROW_MS);
   }, [clearTimers, later]);
 
-  const last = lines[lines.length - 1];
-  const throwCaption = last ? lineCaption(lines.length - 1, last) : null;
-
-  return { phase, lines, coins, throwCaption, reduced, cast, reset };
+  return { phase, lines, reduced, cast, reset };
 }
 
 export type Ritual = ReturnType<typeof useDivination>;

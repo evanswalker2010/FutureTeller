@@ -22,26 +22,28 @@ function sectorPath(start: number, end: number, inner: number, outer: number): s
 }
 
 export function Bagua({
-  spinning,
+  motion = "still",
   disabled,
   onCast,
 }: {
-  spinning?: boolean;
+  motion?: "still" | "spin" | "shrink";
   disabled?: boolean;
   onCast: () => void;
 }) {
   return (
     <button
       type="button"
-      className="bagua-button group relative block w-full cursor-pointer rounded-full outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-ink disabled:cursor-default"
+      className="bagua-button group relative block h-full w-full cursor-pointer rounded-full outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-ink disabled:cursor-default disabled:opacity-100"
       onClick={onCast}
-      disabled={disabled}
+      disabled={disabled || motion !== "still"}
       aria-label="点击八卦起卦"
     >
       <span className="pointer-events-none absolute inset-[14%] rounded-full bg-gold/10 blur-3xl" />
+      <div className={motion === "shrink" ? "bagua-collapse is-shrinking" : "bagua-collapse"}>
+        <div className={motion === "still" ? "h-full w-full" : "bagua-whirl h-full w-full"}>
       <svg viewBox="0 0 400 400" className="relative w-full" role="img" aria-hidden>
         <circle cx={CX} cy={CY} r="194" fill="none" stroke="#c6a15b" strokeWidth="1.2" opacity="0.55" />
-        <g className={spinning ? "bagua-ring is-fast" : "bagua-ring"}>
+        <g>
           <circle cx={CX} cy={CY} r="190" fill="none" />
           {LATER_HEAVEN.map((id, index) => {
             const mid = -Math.PI / 2 + index * (Math.PI / 4);
@@ -134,6 +136,8 @@ export function Bagua({
           <circle r="60" fill="none" stroke="#c6a15b" strokeWidth="1.4" />
         </g>
       </svg>
+        </div>
+      </div>
     </button>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
-import { Bagua } from "@/components/bagua";
-import { CastPanel } from "@/components/cast-panel";
+import { RevealStage } from "@/components/reveal-stage";
 import { Button } from "@/components/ui/button";
 import type { Ritual } from "@/lib/use-divination";
 import { cn } from "cn";
@@ -16,7 +15,6 @@ export function PhoneStage({
   mode: "device" | "preview";
 }) {
   const ios = platform === "ios";
-  const idle = ritual.phase === "idle";
   const topPad =
     mode === "preview"
       ? ios
@@ -44,18 +42,7 @@ export function PhoneStage({
       </header>
 
       <main className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
-        {idle ? (
-          <div className="flex h-full flex-col items-center justify-center px-6 py-4">
-            <div className="w-[min(16.5rem,78%)]">
-              <Bagua onCast={ritual.cast} />
-            </div>
-            <p className="mt-6 font-serif text-lg tracking-[0.22em]">轻触八卦起卦</p>
-          </div>
-        ) : (
-          <div className="px-4 py-4">
-            <CastPanel ritual={ritual} layout="phone" />
-          </div>
-        )}
+        <RevealStage ritual={ritual} hint="轻触八卦起卦" />
       </main>
 
       <footer className={cn("shrink-0 px-4 pt-2", bottomPad)}>
