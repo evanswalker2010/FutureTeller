@@ -145,6 +145,33 @@
   }
 }
 
+.bagua-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: bagua-spin 96s linear infinite;
+}
+
+.bagua-ring.is-fast {
+  animation-duration: 1.1s;
+}
+
+.mac-cast {
+  display: grid;
+  align-items: start;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .mac-cast {
+    grid-template-columns: 320px minmax(0, 1fr);
+  }
+
+  .mac-cast-figure {
+    position: sticky;
+    top: 0;
+  }
+}
+
 .bagua-collapse,
 .bagua-whirl {
   width: 100%;
@@ -372,6 +399,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .bagua-ring,
+  .bagua-ring.is-fast,
   .bagua-whirl,
   .bagua-collapse.is-shrinking,
   .seed-dot,
