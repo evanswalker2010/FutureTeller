@@ -42,7 +42,7 @@ export function PhoneStage({
       </header>
 
       <main className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
-        <RevealStage ritual={ritual} hint="轻触八卦起卦" />
+        <RevealStage ritual={ritual} hint="心念所系 触指起卦" />
       </main>
 
       <footer className={cn("shrink-0 px-4 pt-2", bottomPad)}>
