@@ -34,6 +34,8 @@ ios/App/build/
 ios/App/App/public/
 ios/App/App/capacitor.config.json
 *.apk
+*.aab
+android/keystore/
 
 # production
 /build

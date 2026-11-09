@@ -8,6 +8,8 @@
 
 安卓安装包是 `public/download/yijing-android.apk`。在手机上打开后按提示安装。应用名是「易经算卦」。点八卦之后只看到转动、收成一点、卦象放大，画面上不再写出这几步。
 
+Google Play 上的包名是 `com.fortunetellerYi.myapp`。正式包是签名后的 AAB，用 `android/keystore/keystore.properties` 里的上传密钥签名。密钥文件不进仓库，丢了就不能给同一个商店应用发更新。
+
 苹果手机工程在 `ios/App`。在 Mac 上执行 `npx cap sync ios`，用 Xcode 打开 `ios/App/App.xcodeproj`，连上 iPhone 后运行。Safari 里也可以把网页「添加到主屏幕」，图标同样是全屏的手机界面。
 
 ## Mac 应用
