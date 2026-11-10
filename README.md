@@ -10,7 +10,7 @@
 
 Google Play 上的包名是 `com.fortunetellerYi.myapp`。正式包是签名后的 AAB，用 `android/keystore/keystore.properties` 里的上传密钥签名。密钥文件不进仓库，丢了就不能给同一个商店应用发更新。
 
-苹果手机工程在 `ios/App`。在 Mac 上执行 `npx cap sync ios`，用 Xcode 打开 `ios/App/App.xcodeproj`，连上 iPhone 后运行。Safari 里也可以把网页「添加到主屏幕」，图标同样是全屏的手机界面。
+苹果手机工程在 `ios/App`，只面向 iPhone，版本 1.0（build 1），Bundle ID 是 `app.yijing.divination`。在 Mac mini 或 MacBook Air 上执行 `npx cap sync ios`，用 Xcode 打开 `ios/App/App.xcodeproj`。选中 App 目标，Signing 里选你的 Apple Developer 团队，然后 Product → Archive，再 Distribute App 传到 App Store Connect。商店截图在 `store/apple/`，隐私政策是 `https://evanswalker2010.github.io/FutureTeller/privacy.html`。Safari 里也可以把网页「添加到主屏幕」。
 
 ## Mac 应用
 
